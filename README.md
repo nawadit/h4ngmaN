@@ -1,1 +1,1 @@
-# h4ngmaN
+This repo contains my hangman game.
