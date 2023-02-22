@@ -6,7 +6,7 @@ let words = [
   ["Cat", "Dog", "Box", "Cup", "Jam", "Key", "Leg", "Man", "Pen", "Hat"],
   ["Tree", "Rain", "Fish", "Book", "Moon", "City", "Rock", "Gold", "Wind", "Fire"],
   ["Bread", "Apple", "Chair", "Table", "Carpet", "Pencil", "Guitar", "Banana", "Coffee", "Jacket"],
-  ["Wizard", "Elephant", "Penguin", "Chimney", "Banquet", "Mystery", "Library", "Iceberg", "Eleven", "October"]
+  ['banana', 'purple', 'carpet', 'guitar', 'silver', 'planet', 'window', 'coffee', 'market', 'turtle']
 ];
 
 //this is where the user entered word and the actual word would be compared
