@@ -10,23 +10,25 @@ let words = [
     ["Wizard", "Elephant", "Penguin", "Chimney", "Banquet", "Mystery", "Library", "Iceberg", "Eleven", "October"]
 ];
 
-document.querySelector('#newGame').addEventListener('click', rfresh()) //removed this cause the site kept refreshing in a loop
+// document.querySelector('#newGame').addEventListener('click', refresh()) //removed this cause the site kept refreshing in a loop
 
 //this was supposed to enter values of input fields to a var userWord each time there is a change
-document.querySelector('.inputs').addEventListener(onchange, function(){
-   userWord = document.getElementById(this.id).ariaValueMax
-})
+// document.querySelector('.inputs').addEventListener(onchange, function(){
+//    userWord = document.getElementById(this.id).ariaValueMax
+// })
 
 //this is where the user entered word and the actual word would be compared
 function checkwords(){
 
     for(let oss = 0; oss<wordlength;oss++){
+
         console.log("checkwords is running")
         console.log(wordlength)
-        console.log(document.getElementById(i+'letter'))
-        docume
+        let id = oss + 'letter'
+        console.log(id)
+        console.log(        document.getElementById(oss + 'letter').innerText     )
     }
-   console.log('checkWords is running')
+//    console.log('checkWords is running')
     
 
 }
