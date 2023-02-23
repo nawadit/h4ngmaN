@@ -1,68 +1,135 @@
-let gameOn = false; // This will check if the user has started the game or not
-let wordLength, word; // WordLength is the length of the word the user will enter through prompt
 
-//Array of array of words
+
 let words = [
-  ["Cat", "Dog", "Box", "Cup", "Jam", "Key", "Leg", "Man", "Pen", "Hat"],
-  ["Tree", "Rain", "Fish", "Book", "Moon", "City", "Rock", "Gold", "Wind", "Fire"],
-  ["Bread", "Apple", "Chair", "Table", "Carpet", "Pencil", "Guitar", "Banana", "Coffee", "Jacket"],
-  ['banana', 'purple', 'carpet', 'guitar', 'silver', 'planet', 'window', 'coffee', 'market', 'turtle']
+    ["CAT", "DOG", "BOX", "CUP", "JAM", "KEY", "LEG", "MAN", "PEN", "HAT"],
+    ["TREE", "RAIN", "FISH", "BOOK", "MOON", "CITY", "ROCK", "GOLD", "WIND", "FIRE"],
+    ["BREAD", "APPLE", "CHAIR", "TABLE", "CARPET", "PENCIL", "GUITAR", "BANANA", "COFFEE", "JACKET"],
+    ["WIZARD", "ELEPHANT", "PENGUIN", "CHIMNEY", "BANQUET", "MYSTERY", "LIBRARY", "ICEBERG", "ELEVEN", "OCTOBER"]
 ];
 
-//this is where the user entered word and the actual word would be compared
-function checkWords() {
-  let err =0;
-  for (let oss = 0; oss < wordLength; oss++) {
-    if(!(document.getElementById(oss + 'letter').value.toUpperCase() == word[oss].toUpperCase())){
-      err++;
-      document.getElementById(oss + 'letter').value = null
+let wordlength;
+let word;
+let inputs = document.getElementById('inputs')
+let hintsNo;
+
+
+function setHints(){
+    setHintsNumber();
+    for(let i = 0; i<hintsNo; i++){
+        const randomNumber = Math.floor(Math.random() *( wordlength-1));
+        console.log('hint position = ' + randomNumber +'letter')
+        document.getElementById(randomNumber+'letter').value=word[randomNumber]
     }
-    // console.log(document.getElementById(oss + 'letter').value); // This line was corrected
-  }
-  if(err==0){
-    alert('You won')
-  }
+
 }
 
-// this function executes after new setup has been set for the game after user clicks start game
-function game() {
-  //here we ask the user to enter the length of the word
-  wordLength = parseInt(prompt('How many letters do you want? 3, 4, 5 or 6'));
-
-  //we're subtracting 3 form the word so that we can use to determine which array of word from array of array are we to select
-  let letterNO = wordLength - 3;
-
-  //creating a random number from 0 to 9 so that we can choose a random word to give to play the game each time
-  let letter = Math.floor(Math.random() * 10);
-  word = words[letterNO][letter];
-  console.log(word);
-
-  //here we create as many input fields as the letters of the word there are
-  for (let i = 0; i < wordLength; i++) {
-    let dash = document.createElement('input');
-    dash.id = i + 'letter';
-    dash.className = 'inputs';
-    dash.maxLength = '1';
-    dash.style.textAlign = 'center';
-
-        document.querySelector('#blankSpace').append(dash)
+function gaveUp(){
+    for(let y = 0; y<wordlength; y++){
+        document.getElementById(y+'letter').value = word[y];
     }
 }
 
-//this function was supposed to reset the entire game w/o refershing the page
-function refresh() {
-    // document.querySelector('#heading').style.display = 'block'
-    // document.getElementById('startGame').style.display = 'block'
-    // document.querySelector('#secondButtons').style.display = 'none'
-    // document.querySelector('#blankSpace').style.display = 'none'
+function setHintsNumber(){
+    if (wordlength == 3 || wordlength == 4) {
+        hintsNo = 1;
+      } else if (wordlength == 5 || wordlength == 6) {
+        hintsNo = 2;
+      } else {
+        hintsNo = 'ohlala';
+      }
+      
+}
+
+function refresh(){
     location.reload();
 }
 
-//this function sets up new page layout after the user has clicked "Start game"
-function gameStarts(id) {
-    document.querySelector('#heading').style.display = 'none'
-    document.getElementById(id).style.display = 'none'
+function bringWord() {
+    const randomNumber = Math.floor(Math.random() * 10);
+    word = words[wordlength - 3][randomNumber]
+    console.log(word)
+}
+
+function resetFields() {
+    for (let i = 0; i < wordlength; i++) {
+        let inputt = document.getElementById(i + 'letter');
+        inputt.value = null;
+    }
+}
+
+function checkWords() {
+
+    let letter, errors = 0;
+
+    for (let i = 0; i < wordlength; i++) {
+
+        document.getElementById(i + 'letter').style.backgroundColor = '#F4F7F5'
+        letter = document.getElementById(i + 'letter').value.toUpperCase();
+
+        if (word.includes(letter) && word[i] != letter) {
+            errors++
+            document.getElementById(i + 'letter').style.backgroundColor = '#eeadad'
+        }
+
+        else if (!word.includes(letter)) {
+            errors++
+            document.getElementById(i + 'letter').value = null
+        }
+
+        else{
+            document.getElementById(i + 'letter').style.backgroundColor = '#92d89c'
+        }
+    }
+
+    if (errors == 0) {
+        alert('You won')
+        setTimeout(() => {
+            // Reload the current page
+            location.reload();
+        }, 500);
+    }
+}
+
+function newGame() {
+    let heading = document.querySelector('#heading');
+    heading.style.display = 'none'
+
+    let newGame = document.querySelector('#newGame')
+    newGame.style.display = 'none'
+
+    askWordLength();
+    
+    inputs.style.display = 'flex'
     document.querySelector('#secondButtons').style.display = 'flex'
-    document.querySelector('#blankSpace').style.display = 'block'
-    game();    
+
+    setupGamePage();
+
+    bringWord();
+
+    setHints();
+}
+
+function askWordLength() {
+    let input
+    wordlength=prompt('Enter length of word 3, 4, 5 or 6')
+    if(wordlength>6||wordlength<3){
+        input='invalid'
+    }
+     while(input=='invalid'){
+        wordlength=prompt('Invalid input \n Enter length of word 3, 4, 5 or 6')
+        if(wordlength>=3 && wordlength<=6){
+            input='valid'
+        }
+    }
+}
+
+function setupGamePage() {
+    for (let i = 0; i < wordlength; i++) {
+        let input = document.createElement('input')
+        input.type = 'text'
+        input.className = 'inputBox'
+        input.maxLength = '1'
+        input.id = i + 'letter'
+        inputs.append(input)
+    }
 }

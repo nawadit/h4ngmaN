@@ -14,14 +14,19 @@
 
 <body>
     <div class="container">
-        <p onclick="refresh()"id="heading">h4ngmaN</p>
-        <button onclick = "gameStarts(this.id)" class="buttons" id="startGame">Start</button>
-        <div id="blankSpace"></div>
-        <div class="" id="secondButtons">
-            <button class="buttons" onclick="checkWords()" id="okay">Check</button>
-            <button class="buttons" onclick="refresh()" id="newGame">New Game</button>
+        <p id="heading">h4ngmaN</p>
+        <button onclick="newGame()" id="newGame" class="buttons">New Game</button>
+
+        <div id="inputs">
         </div>
-       
+
+        <div id="secondButtons">
+            <button class="buttons" onclick="resetFields()" id="resetFields">Reset</button>
+            <button class="buttons" onclick="gaveUp()" id="resetFields">Give up</button>
+            <button class="buttons" onclick="checkWords()" id="checkWords">Check</button>
+            <button class="buttons" onclick="refresh()" id="refresh">New Game</button>
+        </div>
+
     </div>
     <script src="script.js"></script>
 </body>

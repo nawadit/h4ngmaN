@@ -60,12 +60,21 @@ body{
     font-weight: lighter;
 
 }
-.inputs{
+#inputs{
+    display: none;
+    border: none;
+    width: fit-content;
+    justify-content: space-around;
+}
+.inputBox{
     width:40px;
     aspect-ratio: 1/1;
+    text-align: center;
     border:none;
     border-radius: 5px;
     border-bottom: 1px solid #08090a;
     background-color: #F4F7F5;
     margin: 20px 10px;
+    transition: 0.1s;
 }
+ 
