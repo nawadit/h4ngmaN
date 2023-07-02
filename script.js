@@ -47,6 +47,7 @@ function game(){
 
     //here we create as many input fields as the letter of words there are
     for (i = 0; i < wordlength; i++) {
+        console.log(i+"th loop in creating input fields")
         let dash = document.createElement('input')
         dash.id = i+'letter'
         dash.className='inputs'
