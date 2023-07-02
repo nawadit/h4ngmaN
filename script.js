@@ -7,7 +7,7 @@ let words = [
     ["Cat", "Dog", "Box", "Cup", "Jam", "Key", "Leg", "Man", "Pen", "Hat"],
     ["Tree", "Rain", "Fish", "Book", "Moon", "City", "Rock", "Gold", "Wind", "Fire"],
     ["Bread", "Apple", "Chair", "Table", "Carpet", "Pencil", "Guitar", "Banana", "Coffee", "Jacket"],
-    ["Wizard", "Elephant", "Penguin", "Chimney", "Banquet", "Mystery", "Library", "Iceberg", "Eleven", "October"]
+   ,['banana', 'guitar', 'rocket', 'purple', 'planet', 'tissue', 'online', 'zodiac', 'summer', 'circle']
 ];
 
 document.querySelector('#newGame').addEventListener('click', rfresh()) //removed this cause the site kept refreshing in a loop
@@ -47,7 +47,6 @@ function game(){
 
     //here we create as many input fields as the letter of words there are
     for (i = 0; i < wordlength; i++) {
-        console.log(i+"th loop in creating input fields")
         let dash = document.createElement('input')
         dash.id = i+'letter'
         dash.className='inputs'
